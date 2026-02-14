@@ -1,14 +1,15 @@
-import React from 'react'
-import HomePage from './pages/HomePage'
+// import HomePage from "./pages/HomePage";
+import DetailsPage from "./pages/DetailsPage";
 
 const App = () => {
   return (
-    <div className='min-h-screen bg-gray-50 p-4 md:p-8'>
+    <div className="min-h-screen bg-gray-50 p-4 md:p-8">
       <main>
-        <HomePage />
+        {/* <HomePage /> */}
+        <DetailsPage />
       </main>
     </div>
-  )
-}
+  );
+};
 
-export default App
+export default App;
