@@ -1,3 +1,4 @@
+import FeedbackList from "../components/FeedbackList";
 import Sidebar from "../components/Sidebar";
 
 const HomePage = () => {
@@ -20,10 +21,11 @@ const HomePage = () => {
                 <option value="Leaset Comments">Least Comments</option>
               </select>
             </div>
+            <button className="bg-purple-600 hover:bg-purple-700 text-white px-4 py-2 rounded-lg font-semibold text-sm transition-all whitespace-normal">
+              + Add Feedback
+            </button>
           </div>
-          <button className="bg-purple-600 hover:bg-purple-700 text-white px-4 py-2 rounded-lg font-semibold text-sm transition-all whitespace-normal">
-            + Add Feedback
-          </button>
+          <FeedbackList />
         </div>
       </div>
     </div>
