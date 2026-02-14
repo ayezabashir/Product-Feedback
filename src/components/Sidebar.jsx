@@ -27,21 +27,21 @@ const Sidebar = () => {
               <div className="w-2 h-2 rounded-full bg-orange-400"></div>
               <span className="text-gray-600 text-sm">Planned</span>
             </div>
-            <span className="font-bold text-gray-600">Panned</span>
+            <span className="font-bold text-gray-600">Planned</span>
           </div>
           <div className="flex justify-between items-center">
             <div className="flex items-center gap-2">
               <div className="w-2 h-2 rounded-full bg-cyan-400"></div>
               <span className="text-gray-600 text-sm">Live</span>
             </div>
-            <span className="font-bold text-gray-600">live</span>
+            <span className="font-bold text-gray-600">Live</span>
           </div>
           <div className="flex justify-between items-center">
             <div className="flex items-center gap-2">
               <div className="w-2 h-2 rounded-full bg-purple-400"></div>
-              <span className="text-gray-600 text-sm">In-Progress</span>
+              <span className="text-gray-600 text-sm">In Progress</span>
             </div>
-            <span className="font-bold text-gray-600">in progress</span>
+            <span className="font-bold text-gray-600">In Progress</span>
           </div>
         </div>
         <div className="mt-4">

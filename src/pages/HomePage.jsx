@@ -1,4 +1,5 @@
 import FeedbackList from "../components/FeedbackList";
+import FeedbackModalBox from "../components/FeedbackModalBox";
 import Sidebar from "../components/Sidebar";
 
 const HomePage = () => {
@@ -28,6 +29,7 @@ const HomePage = () => {
           <FeedbackList />
         </div>
       </div>
+      <FeedbackModalBox />
     </div>
   );
 };
