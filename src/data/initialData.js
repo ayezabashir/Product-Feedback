@@ -66,20 +66,21 @@ export const initialSuggestions = [
     status: "Planned",
   },
 ];
-export const initialComments = [
-  {
-    id: 1,
-    name: "Sophia Lee",
-    username: "@designqueen",
-    avatar: "https://i.pravatar.cc/150?img=70",
-    text: "I think adding a dark mode toggle would greatly improve usability, especially for users who work late at night or prefer a low-light interface. It could also reduce eye strain significantly.",
-  },
-  {
-    id: 2,
-    name: "Liam Johnson",
-    username: "@codewizard",
-    avatar: "https://i.pravatar.cc/150?img=69",
-    text: "There should be an option to filter search results by date, relevance, or popularity. This would help users find exactly what they’re looking for without having to scroll through irrelevant results, improving the overall experience.",
-  },
-];
-
+export const initialComments = {
+  2: [
+    {
+      id: 1,
+      name: "Sophia Lee",
+      username: "@designqueen",
+      avatar: "https://i.pravatar.cc/150?img=70",
+      text: "I think adding a dark mode toggle would greatly improve usability, especially for users who work late at night or prefer a low-light interface. It could also reduce eye strain significantly.",
+    },
+    {
+      id: 2,
+      name: "Liam Johnson",
+      username: "@codewizard",
+      avatar: "https://i.pravatar.cc/150?img=69",
+      text: "There should be an option to filter search results by date, relevance, or popularity. This would help users find exactly what they’re looking for without having to scroll through irrelevant results, improving the overall experience.",
+    },
+  ],
+};

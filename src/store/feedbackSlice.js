@@ -19,7 +19,7 @@ const feedbackSlice = createSlice({
         comments: 0,
         category: action.payload.category || "Feature",
         upvoted: false,
-        status: action.action.status || "Planned",
+        status: action.payload.status || "Planned",
       };
       state.suggestions.push(newSuggestion);
     },
