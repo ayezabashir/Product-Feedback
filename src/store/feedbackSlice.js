@@ -41,17 +41,42 @@ const feedbackSlice = createSlice({
       delete state.suggestions[action.payload];
     },
     toggleUpvote: (state, action) => {
-      const item = state.suggestions.find(
+      const vote = state.suggestions.find(
         (suggestion) => suggestion.id === action.payload,
       );
-      if (item) {
-        item.upvoted = !item.upvoted;
-        item.upvotes = item.upvoted
-          ? item.upvotes + 1
-          : Math.max(0, item.upvotes - 1);
+      if (vote) {
+        vote.upvoted = !vote.upvoted;
+        vote.upvotes = vote.upvoted
+          ? vote.upvotes + 1
+          : Math.max(0, vote.upvotes - 1);
       }
+    },
+    addComment: (state, action) => {
+      const { suggestionId, comment } = action.payload;
+      if (!state.comments[suggestionId]) {
+        state.comments[suggestionId] = [];
+      }
+      state.comments[suggestionId].push(comment);
+      const item = state.suggestions.find(
+        (suggestion) => suggestion.id === suggestionId,
+      );
+      if (item) {
+        item.comments = (item.comments || 0) + 1;
+      }
+    },
+    replaceAll: (state, action) => {
+      return action.payload;
     },
   },
 });
+
+export const {
+  addSuggestion,
+  updateSuggestion,
+  deleteSuggestion,
+  toggleUpvote,
+  addComment,
+  replaceAll,
+} = feedbackSlice.actions;
 
 export default feedbackSlice.reducer;
