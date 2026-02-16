@@ -34,7 +34,7 @@ const HomePage = () => {
   const closeModal = () => navigate(-1);
 
   const handleAdd = (payload) => {
-    dispatch(addSuggestion());
+    dispatch(addSuggestion(payload));
     closeModal();
   };
 
@@ -89,7 +89,12 @@ const HomePage = () => {
         </div>
       </div>
       {location.pathname === "/add" && (
-        <FeedbackModalBox isOpen={modelOpen} isClose={closeModal} onAdd={handleAdd} />
+        <FeedbackModalBox
+          isOpen={modelOpen}
+          isClose={closeModal}
+          onAdd={handleAdd}
+          editingFeedback={null}
+        />
       )}
     </div>
   );

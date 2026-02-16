@@ -1,12 +1,48 @@
+/* eslint-disable react-hooks/set-state-in-effect */
 import { X } from "lucide-react";
+import { useEffect, useState } from "react";
 
-const FeedbackModalBox = ({ isOpen, isClose, onAdd }) => {
+const FeedbackModalBox = ({ isOpen, isClose, onAdd, editingFeedback }) => {
+  const [formData, setFormData] = useState({
+    title: "",
+    category: "Feature",
+    status: "Planned",
+    description: "",
+  });
+
+  useEffect(() => {
+    if (editingFeedback) {
+      setFormData({
+        title: editingFeedback.title || "",
+        category: editingFeedback.category || "Feature",
+        status: editingFeedback.status || "Planned",
+        description: editingFeedback.description || "",
+      });
+    } else {
+      setFormData({
+        title: "",
+        category: "Feature",
+        status: "Planned",
+        description: "",
+      });
+    }
+  }, [editingFeedback, isOpen]);
+
+  if (!isOpen) return null;
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    onAdd(formData);
+  };
+  const deleteData = () => {
+    if (!editingFeedback) return;
+  };
   return (
     <div className="fixed inset-0 backdrop-blur-sm flex items-center justify-center p-4 z-50">
       <div className="bg-white rounded-xl max-w-lg w-full p-6 max-h-[900vh] overflow-y-auto">
         <div className="flex justify-between items-center mb-6">
           <h2 className="text-2xl font-bold text-gray-800">
-            Create New Feedback
+            {editingFeedback ? "Edit" : "Create New"} Feedback
           </h2>
           <button
             onClick={isClose}
@@ -15,7 +51,7 @@ const FeedbackModalBox = ({ isOpen, isClose, onAdd }) => {
             <X size={24} />
           </button>
         </div>
-        <form action="">
+        <form onSubmit={handleSubmit} className="space-y-6">
           <div className="mb-2">
             <label className="block text-sm mb-2 font-black text-gray-700">
               Feedback Title
@@ -23,6 +59,10 @@ const FeedbackModalBox = ({ isOpen, isClose, onAdd }) => {
             <input
               type="text"
               placeholder="Add a short, descriptive headline"
+              value={formData.title}
+              onChange={(e) =>
+                setFormData({ ...formData, title: e.target.value })
+              }
               className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500"
             />
           </div>
@@ -30,7 +70,13 @@ const FeedbackModalBox = ({ isOpen, isClose, onAdd }) => {
             <label className="block text-sm mb-2 font-black text-gray-700">
               Category
             </label>
-            <select className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500">
+            <select
+              value={formData.category}
+              onChange={(e) =>
+                setFormData({ ...formData, category: e.target.value })
+              }
+              className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500"
+            >
               <option value="Feature">Feature</option>
               <option value="Ui">Ui</option>
               <option value="UX">UX</option>
@@ -42,7 +88,13 @@ const FeedbackModalBox = ({ isOpen, isClose, onAdd }) => {
             <label className="block text-sm mb-2 font-black text-gray-700">
               Status
             </label>
-            <select className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500">
+            <select
+              value={formData.status}
+              onChange={(e) =>
+                setFormData({ ...formData, status: e.target.value })
+              }
+              className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500"
+            >
               <option value="Planned">Planned</option>
               <option value="In Progress">In Progress</option>
               <option value="Live">Live</option>
@@ -53,14 +105,23 @@ const FeedbackModalBox = ({ isOpen, isClose, onAdd }) => {
               Feedback Details
             </label>
             <textarea
+              value={formData.description}
+              onChange={(e) =>
+                setFormData({ ...formData, description: e.target.value })
+              }
               rows="4"
               className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500"
             ></textarea>
           </div>
           <div className="flex gap-4">
-            <button className="flex-1 bg-red-600 hover:bg-red-700 text-white py-3 font-semibold rounded-lg transition-all">
-              Delete
-            </button>
+            {editingFeedback && (
+              <button
+                onClick={deleteData}
+                className="flex-1 bg-red-600 hover:bg-red-700 text-white py-3 font-semibold rounded-lg transition-all"
+              >
+                Delete
+              </button>
+            )}
             <button className="flex-1 bg-gray-600 hover:bg-gray-700 text-white py-3 font-semibold rounded-lg transition-all">
               Cancel
             </button>
