@@ -1,11 +1,60 @@
-import DetailView from "../components/DetailView"
+import { useLocation, useNavigate, useParams } from "react-router-dom";
+import DetailView from "../components/DetailView";
+import { useDispatch, useSelector } from "react-redux";
+import { useMemo } from "react";
+import {
+  addComment,
+  deleteSuggestion,
+  updateSuggestion,
+} from "../store/feedbackSlice";
 
 const DetailsPage = () => {
-  return (
-    <div className='max-w-3xl mx-auto space-y-6'>
-        <DetailView />
-    </div>
-  )
-}
+  const { id } = useParams();
+  const suggestionId = Number(id);
+  const navigate = useNavigate();
+  const location = useLocation();
+  const dispatch = useDispatch();
 
-export default DetailsPage
+  const suggestions = useSelector((state) => state.feedback.suggestions);
+  const comments = useSelector((state) => state.feedback.comments);
+
+  const feedback = useMemo(() => {
+    suggestions.find((suggestion) => suggestion.id === suggestionId);
+  }, [suggestions, suggestionId]);
+
+  if (!feedback) {
+    navigate("/");
+    return null;
+  }
+
+  const isEditRoute = location.pathname.endsWith("/edit");
+  const closeModal = () => navigate(-1);
+  const handleUpvote = () => dispatch(handleUpvote(feedback.id));
+  const handleAddComment = (suggestionId, comment) => {
+    dispatch(addComment({ suggestionId, comment }));
+  };
+  const handleUpdate = (payload) => {
+    dispatch(updateSuggestion(payload));
+    closeModal();
+  };
+
+  const handleDelete = (id) => {
+    dispatch(deleteSuggestion(id));
+    navigate("/");
+  };
+
+  return (
+    <div className="max-w-3xl mx-auto space-y-6">
+      <DetailView
+        feedback={feedback}
+        comments={comments[feedback.id] || {}}
+        onBack={() => navigate("/")}
+        onUpvote={handleUpvote}
+        onOpenEdit={() => navigate(`/feedback/${feedback.id}/edit`)}
+        onAddComment={handleAddComment}
+      />
+    </div>
+  );
+};
+
+export default DetailsPage;
