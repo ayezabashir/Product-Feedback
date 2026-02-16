@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
 import FeedbackList from "../components/FeedbackList";
-// import FeedbackModalBox from "../components/FeedbackModalBox";
+import FeedbackModalBox from "../components/FeedbackModalBox";
 import Sidebar from "../components/Sidebar";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useMemo, useState } from "react";
@@ -56,9 +56,13 @@ const HomePage = () => {
         <div className="lg:col-span-3 space-y-6">
           <div className="bg-gray-800 rounded-xl p-4 flex flex-col sm:flex-row items-center justify-between gap-4">
             <div className="flex items-center gap-4 flex-wrap">
-              <span className="text-white font-bold">Suggestion Length</span>
+              <span className="text-white font-bold">
+                {suggestions.length} Suggestions
+              </span>
               <select
                 name=""
+                value={sortBy}
+                onChange={(e) => setSortBy(e.target.value)}
                 id=""
                 className="bg-transparent text-gray-400 font-semibold text-sm border-none outline-none cursor-pointer"
               >
@@ -75,7 +79,9 @@ const HomePage = () => {
           <FeedbackList />
         </div>
       </div>
-      {/* <FeedbackModalBox /> */}
+      {location.pathname === "/add" && (
+        <FeedbackModalBox closeModal={closeModal} />
+      )}
     </div>
   );
 };
