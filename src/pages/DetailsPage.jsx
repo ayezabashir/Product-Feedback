@@ -1,10 +1,11 @@
 import { useLocation, useNavigate, useParams } from "react-router-dom";
 import DetailView from "../components/DetailView";
 import { useDispatch, useSelector } from "react-redux";
-import { useMemo } from "react";
+import { useEffect, useMemo } from "react";
 import {
   addComment,
   deleteSuggestion,
+  toggleUpvote,
   updateSuggestion,
 } from "../store/feedbackSlice";
 
@@ -19,17 +20,22 @@ const DetailsPage = () => {
   const comments = useSelector((state) => state.feedback.comments);
 
   const feedback = useMemo(() => {
-    suggestions.find((suggestion) => suggestion.id === suggestionId);
+    return suggestions.find((suggestion) => suggestion.id === suggestionId);
   }, [suggestions, suggestionId]);
 
+  useEffect(() => {
+    if (!feedback) {
+      navigate("/");
+      return null;
+    }
+  }, [feedback, navigate]);
   if (!feedback) {
-    navigate("/");
     return null;
   }
 
   const isEditRoute = location.pathname.endsWith("/edit");
   const closeModal = () => navigate(-1);
-  const handleUpvote = () => dispatch(handleUpvote(feedback.id));
+  const handleUpvote = () => dispatch(toggleUpvote(feedback.id));
   const handleAddComment = (suggestionId, comment) => {
     dispatch(addComment({ suggestionId, comment }));
   };
@@ -47,7 +53,7 @@ const DetailsPage = () => {
     <div className="max-w-3xl mx-auto space-y-6">
       <DetailView
         feedback={feedback}
-        comments={comments[feedback.id] || {}}
+        comments={comments[feedback.id] || []}
         onBack={() => navigate("/")}
         onUpvote={handleUpvote}
         onOpenEdit={() => navigate(`/feedback/${feedback.id}/edit`)}

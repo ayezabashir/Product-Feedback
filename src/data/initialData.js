@@ -74,6 +74,7 @@ export const initialComments = {
       username: "@designqueen",
       avatar: "https://i.pravatar.cc/150?img=70",
       text: "I think adding a dark mode toggle would greatly improve usability, especially for users who work late at night or prefer a low-light interface. It could also reduce eye strain significantly.",
+      date: "20-Feb-2026",
     },
     {
       id: 2,
@@ -81,6 +82,7 @@ export const initialComments = {
       username: "@codewizard",
       avatar: "https://i.pravatar.cc/150?img=69",
       text: "There should be an option to filter search results by date, relevance, or popularity. This would help users find exactly what they’re looking for without having to scroll through irrelevant results, improving the overall experience.",
+      date: "02-March-2024",
     },
   ],
 };
