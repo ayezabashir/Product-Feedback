@@ -69,14 +69,23 @@ const HomePage = () => {
                 <option value="Most Upvotes">Most Upvotes</option>
                 <option value="Least Upvotes">Least Upvotes</option>
                 <option value="Most Comments">Most Comments</option>
-                <option value="Leaset Comments">Least Comments</option>
+                <option value="Least Comments">Least Comments</option>
               </select>
             </div>
-            <button className="bg-purple-600 hover:bg-purple-700 text-white px-4 py-2 rounded-lg font-semibold text-sm transition-all whitespace-normal">
+            <button
+              onClick={openAdd}
+              className="bg-purple-600 hover:bg-purple-700 text-white px-4 py-2 rounded-lg font-semibold text-sm transition-all whitespace-normal"
+            >
               + Add Feedback
             </button>
           </div>
-          <FeedbackList />
+          <FeedbackList
+            suggestions={suggestions}
+            filterCategory={filterCategory}
+            onUpvotes={handleUpvotes}
+            sortBy={sortBy}
+            onView={handleView}
+          />
         </div>
       </div>
       {location.pathname === "/add" && (
