@@ -8,7 +8,13 @@ const FeedbackItems = ({ suggestions, onUpvotes, sortBy, onView }) => {
     >
       <div className="flex items-center gap-6">
         <button
-          className={`flex flex-col items-center gap-1 rounded-lg px-3 py-2 transition-all`}
+          onClick={(e) => {
+            e.stopPropagation();
+            onUpvotes && onUpvotes(suggestions.id);
+          }}
+          className={`flex flex-col items-center gap-1 rounded-lg px-3 py-2 transition-all 
+            ${suggestions.upvoted ? "bg-blue-600 text-white" : "bg-gray-100 hover:bg-blue-100 text-gray-800"}
+            `}
         >
           <ChevronUp size={16} />
           <span className="font-bold text-sm">{suggestions.upvotes}</span>
@@ -25,7 +31,7 @@ const FeedbackItems = ({ suggestions, onUpvotes, sortBy, onView }) => {
         <div className="flex items-center gap-2">
           <MessagesSquare className="text-gray-400" size={18} />
           <span className="font-bold text-gray-800">
-            {suggestions.comments} Comments
+            {suggestions.comments}
           </span>
         </div>
       </div>

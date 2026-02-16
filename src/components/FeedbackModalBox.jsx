@@ -1,6 +1,6 @@
 import { X } from "lucide-react";
 
-const FeedbackModalBox = ({ closeModal }) => {
+const FeedbackModalBox = ({ isOpen, isClose, onAdd }) => {
   return (
     <div className="fixed inset-0 backdrop-blur-sm flex items-center justify-center p-4 z-50">
       <div className="bg-white rounded-xl max-w-lg w-full p-6 max-h-[900vh] overflow-y-auto">
@@ -9,7 +9,7 @@ const FeedbackModalBox = ({ closeModal }) => {
             Create New Feedback
           </h2>
           <button
-            onClick={closeModal}
+            onClick={isClose}
             className="text-gray-400 hover:text-gray-600"
           >
             <X size={24} />

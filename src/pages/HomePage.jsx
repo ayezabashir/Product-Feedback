@@ -89,7 +89,7 @@ const HomePage = () => {
         </div>
       </div>
       {location.pathname === "/add" && (
-        <FeedbackModalBox closeModal={closeModal} />
+        <FeedbackModalBox isOpen={modelOpen} isClose={closeModal} onAdd={handleAdd} />
       )}
     </div>
   );
