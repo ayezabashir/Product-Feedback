@@ -122,11 +122,17 @@ const FeedbackModalBox = ({ isOpen, isClose, onAdd, editingFeedback }) => {
                 Delete
               </button>
             )}
-            <button className="flex-1 bg-gray-600 hover:bg-gray-700 text-white py-3 font-semibold rounded-lg transition-all">
+            <button
+              onClick={isClose}
+              className="flex-1 bg-gray-600 hover:bg-gray-700 text-white py-3 font-semibold rounded-lg transition-all"
+            >
               Cancel
             </button>
-            <button className="flex-1 bg-purple-600 hover:bg-purple-700 text-white py-3 font-semibold rounded-lg transition-all">
-              Add Feedback
+            <button
+              type="submit"
+              className="flex-1 bg-purple-600 hover:bg-purple-700 text-white py-3 font-semibold rounded-lg transition-all"
+            >
+              {editingFeedback ? "Save Changes" : "Add Feedback"}
             </button>
           </div>
         </form>
