@@ -1,12 +1,58 @@
+import { useDispatch, useSelector } from "react-redux";
 import FeedbackList from "../components/FeedbackList";
-import FeedbackModalBox from "../components/FeedbackModalBox";
+// import FeedbackModalBox from "../components/FeedbackModalBox";
 import Sidebar from "../components/Sidebar";
+import { useLocation, useNavigate } from "react-router-dom";
+import { useMemo, useState } from "react";
+import { addSuggestion, toggleUpvote } from "../store/feedbackSlice";
 
 const HomePage = () => {
+  const dispatch = useDispatch();
+  const location = useLocation();
+  const navigate = useNavigate();
+
+  const suggestions = useSelector((state) => state.feedback.suggestions);
+  const [filterCategory, setFilterCategory] = useState("All");
+  const [sortBy, setSortBy] = useState("Most Upvotes");
+
+  const modelOpen = location.pathname === "/add";
+  const roadmapCounts = useMemo(
+    () => ({
+      planned: suggestions.filter(
+        (suggestion) => suggestion.status === "Planned".length,
+      ),
+      inProgress: suggestions.filter(
+        (suggestion) => suggestion.status === "In Progress".length,
+      ),
+      live: suggestions.filter(
+        (suggestion) => suggestion.status === "Live".length,
+      ),
+    }),
+    [suggestions],
+  );
+  const openAdd = () => navigate("/add");
+  const closeModal = () => navigate(-1);
+
+  const handleAdd = (payload) => {
+    dispatch(addSuggestion());
+    closeModal();
+  };
+
+  const handleUpvotes = (id) => dispatch(toggleUpvote(id));
+  const handleView = (item) => {
+    navigate(`/feedback/${item.id}`);
+  };
+
   return (
     <div className="max-w-6xl mx-auto">
       <div className="grid grid-cols-1 lg:grid-cols-4 gap-6">
-        <Sidebar />
+        <Sidebar
+          filterCategory={filterCategory}
+          setFilterCategory={setFilterCategory}
+          roadmapCounts={roadmapCounts}
+          openRoadmap={() => navigate("/roadmap")}
+          openAdd={openAdd}
+        />
         <div className="lg:col-span-3 space-y-6">
           <div className="bg-gray-800 rounded-xl p-4 flex flex-col sm:flex-row items-center justify-between gap-4">
             <div className="flex items-center gap-4 flex-wrap">
@@ -29,7 +75,7 @@ const HomePage = () => {
           <FeedbackList />
         </div>
       </div>
-      <FeedbackModalBox />
+      {/* <FeedbackModalBox /> */}
     </div>
   );
 };

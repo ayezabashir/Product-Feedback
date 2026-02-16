@@ -1,4 +1,12 @@
-const Sidebar = () => {
+const categories = ["All", "UI", "UX", "Enhancement", "Bug", "Feature"];
+
+const Sidebar = ({
+  filterCategory,
+  setFilterCategory,
+  roadmapCounts,
+  openRoadmap,
+  openAdd,
+}) => {
   return (
     <div className="lg:col-span-1 space-y-6">
       <div className="bg-gray-800 rounded-xl p-6 text-white">
@@ -7,11 +15,13 @@ const Sidebar = () => {
       </div>
       <div className="bg-white rounded-xl p-8 shadow-md">
         <div className="flex flex-wrap gap-2">
-          <button
-            className={`p-4 py-2 rounded-lg text-sm font-semibold transition-all`}
-          >
-            Categories
-          </button>
+          {categories.map((category) => (
+            <button
+              className={`p-4 py-2 rounded-lg text-sm font-semibold transition-all`}
+            >
+              {category}
+            </button>
+          ))}
         </div>
       </div>
       <div className="bg-white rounded-xl p-6 shadow-md">
