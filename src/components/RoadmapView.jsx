@@ -3,24 +3,28 @@ const RoadmapView = ({ suggestions, onBack, onView, onAdd, onUpvote }) => {
   const statusCategories = [
     {
       name: "Planned",
-      color: "bg-orange-400",
+      color: "border-orange-400",
+      dot: "bg-orange-400",
       items: suggestions.filter(
         (suggestion) => suggestion.status === "Planned",
       ),
     },
     {
       name: "In Progress",
-      color: "bg-purple-500",
+      color: "border-purple-500",
+      dot: "bg-purple-500",
       items: suggestions.filter(
         (suggestion) => suggestion.status === "In Progress",
       ),
     },
     {
       name: "Live",
-      color: "bg-cyan-400",
+      color: "border-cyan-400",
+      dot: "bg-cyan-400",
       items: suggestions.filter((suggestion) => suggestion.status === "Live"),
     },
   ];
+
   return (
     <div className="max-w-6xl mx-auto">
       <div className="bg-gray-800 rounded-xl p-4 flex items-center justify-between mb-6">
@@ -59,14 +63,11 @@ const RoadmapView = ({ suggestions, onBack, onView, onAdd, onUpvote }) => {
                 <div
                   key={index}
                   onClick={() => onView(item)}
-                  className="bg-white rounded-xl p-6 border-t-4 cursor-pointer hover:shadow-lg transition-all"
-                  style={{
-                    borderTopColor: cateogory.color.replace("bg-", "#"),
-                  }}
+                  className={`bg-white rounded-xl p-6 border-t-4 cursor-pointer hover:shadow-lg transition-all ${cateogory.color}`}
                 >
                   <div className="mb-2">
                     <div
-                      className={`inline-block w-2 h-2 rounded-full mr-2 ${cateogory.color}`}
+                      className={`inline-block w-2 h-2 rounded-full mr-2 ${cateogory.dot}`}
                     ></div>
                     <span className="text-gray-600 text-sm">
                       {cateogory.name}

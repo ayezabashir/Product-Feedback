@@ -146,7 +146,6 @@ const FeedbackModalBox = ({
               Cancel
             </button>
             <button
-              onClick={handleSubmit}
               type="submit"
               className="flex-1 bg-purple-600 hover:bg-purple-700 text-white py-3 font-semibold rounded-lg transition-all"
             >

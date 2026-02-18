@@ -9,7 +9,7 @@ const Sidebar = ({
 }) => {
   return (
     <div className="lg:col-span-1 space-y-6">
-      <div className="bg-gray-800 rounded-xl p-6 text-white">
+      <div className="bg-linear-to-r from-blue-500 via-purple-500 to-pink-500 rounded-xl pt-20 p-6 text-white">
         <h1 className="text-xl">Product Feedback</h1>
         <p className="text-sm opacity-50">Feedback Board</p>
       </div>
