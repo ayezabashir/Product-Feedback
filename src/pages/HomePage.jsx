@@ -92,7 +92,7 @@ const HomePage = () => {
       {location.pathname === "/add" && (
         <FeedbackModalBox
           isOpen={modelOpen}
-          isClose={closeModal}
+          onClose={closeModal}
           onAdd={handleAdd}
           editingFeedback={null}
         />

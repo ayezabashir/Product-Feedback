@@ -1,5 +1,4 @@
 import { ArrowLeft, ChevronUp, MessageSquare } from "lucide-react";
-
 const RoadmapView = () => {
   return (
     <div className="max-w-6xl mx-auto">

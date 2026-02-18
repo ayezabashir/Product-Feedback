@@ -40,16 +40,16 @@ const FeedbackModalBox = ({
   const handleSubmit = (e) => {
     e.preventDefault();
     if (editingFeedback) {
-      onUpdate && onUpdate(...editingFeedback, ...formData);
+      onUpdate && onUpdate({...editingFeedback, ...formData});
     } else {
       onAdd && onAdd(formData);
     }
+    onClose();
   };
   const deleteData = () => {
     if (!editingFeedback) return;
     if (window.confirm("Are you sure you want to delete this feedback?")) {
       onDelete && onDelete(editingFeedback.id);
-      onClose();
     }
   };
   return (
@@ -144,6 +144,7 @@ const FeedbackModalBox = ({
               Cancel
             </button>
             <button
+              onClick={handleSubmit}
               type="submit"
               className="flex-1 bg-purple-600 hover:bg-purple-700 text-white py-3 font-semibold rounded-lg transition-all"
             >
