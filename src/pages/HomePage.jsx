@@ -32,7 +32,7 @@ const HomePage = () => {
     [suggestions],
   );
   const openAdd = () => navigate("/add");
-  const closeModal = () => navigate(-1);
+  const closeModal = () => navigate("/");
 
   const handleAdd = (payload) => {
     dispatch(addSuggestion(payload));

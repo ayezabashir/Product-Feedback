@@ -131,6 +131,7 @@ const FeedbackModalBox = ({
           <div className="flex gap-4">
             {editingFeedback && (
               <button
+              type="button"
                 onClick={deleteData}
                 className="flex-1 bg-red-600 hover:bg-red-700 text-white py-3 font-semibold rounded-lg transition-all"
               >
@@ -139,6 +140,7 @@ const FeedbackModalBox = ({
             )}
             <button
               onClick={onClose}
+              type="button"
               className="flex-1 bg-gray-600 hover:bg-gray-700 text-white py-3 font-semibold rounded-lg transition-all"
             >
               Cancel
