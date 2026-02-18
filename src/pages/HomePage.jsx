@@ -19,14 +19,15 @@ const HomePage = () => {
   const roadmapCounts = useMemo(
     () => ({
       planned: suggestions.filter(
-        (suggestion) => suggestion.status === "Planned".length,
-      ),
+        (suggestion) => suggestion.status === "Planned",
+      ).length,
+
       inProgress: suggestions.filter(
-        (suggestion) => suggestion.status === "In Progress".length,
-      ),
-      live: suggestions.filter(
-        (suggestion) => suggestion.status === "Live".length,
-      ),
+        (suggestion) => suggestion.status === "In Progress",
+      ).length,
+
+      live: suggestions.filter((suggestion) => suggestion.status === "Live")
+        .length,
     }),
     [suggestions],
   );

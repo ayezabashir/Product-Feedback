@@ -118,7 +118,7 @@ const DetailView = ({
         />
         <div className="flex justify-between items-center mt-4">
           <span className="text-gray-500 text-sm">
-            {250 - newComment.length} character left
+            {250 - newComment.length} characters left
           </span>
           <button
             disabled={!newComment.trim()}

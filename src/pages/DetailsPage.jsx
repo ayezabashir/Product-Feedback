@@ -8,6 +8,7 @@ import {
   toggleUpvote,
   updateSuggestion,
 } from "../store/feedbackSlice";
+import FeedbackModalBox from "../components/FeedbackModalBox";
 
 const DetailsPage = () => {
   const { id } = useParams();
@@ -58,6 +59,13 @@ const DetailsPage = () => {
         onUpvote={handleUpvote}
         onOpenEdit={() => navigate(`/feedback/${feedback.id}/edit`)}
         onAddComment={handleAddComment}
+      />
+      <FeedbackModalBox
+        isOpen={isEditRoute}
+        onClose={closeModal}
+        onUpdate={handleUpdate}
+        onDelete={handleDelete}
+        editingFeedback={isEditRoute ? feedback : null}
       />
     </div>
   );

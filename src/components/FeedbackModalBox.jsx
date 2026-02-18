@@ -2,7 +2,14 @@
 import { X } from "lucide-react";
 import { useEffect, useState } from "react";
 
-const FeedbackModalBox = ({ isOpen, isClose, onAdd, editingFeedback }) => {
+const FeedbackModalBox = ({
+  isOpen,
+  onClose,
+  onUpdate,
+  onDelete,
+  onAdd,
+  editingFeedback,
+}) => {
   const [formData, setFormData] = useState({
     title: "",
     category: "Feature",
@@ -32,10 +39,18 @@ const FeedbackModalBox = ({ isOpen, isClose, onAdd, editingFeedback }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    onAdd(formData);
+    if (editingFeedback) {
+      onUpdate && onUpdate(...editingFeedback, ...formData);
+    } else {
+      onAdd && onAdd(formData);
+    }
   };
   const deleteData = () => {
     if (!editingFeedback) return;
+    if (window.confirm("Are you sure you want to delete this feedback?")) {
+      onDelete && onDelete(editingFeedback.id);
+      onClose();
+    }
   };
   return (
     <div className="fixed inset-0 backdrop-blur-sm flex items-center justify-center p-4 z-50">
@@ -45,7 +60,7 @@ const FeedbackModalBox = ({ isOpen, isClose, onAdd, editingFeedback }) => {
             {editingFeedback ? "Edit" : "Create New"} Feedback
           </h2>
           <button
-            onClick={isClose}
+            onClick={onClose}
             className="text-gray-400 hover:text-gray-600"
           >
             <X size={24} />
@@ -123,7 +138,7 @@ const FeedbackModalBox = ({ isOpen, isClose, onAdd, editingFeedback }) => {
               </button>
             )}
             <button
-              onClick={isClose}
+              onClick={onClose}
               className="flex-1 bg-gray-600 hover:bg-gray-700 text-white py-3 font-semibold rounded-lg transition-all"
             >
               Cancel
