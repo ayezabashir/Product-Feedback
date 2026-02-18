@@ -13,12 +13,13 @@ const FeedbackList = ({
   );
   const sorted = [...filtered].sort((a, b) => {
     if (sortBy === "Most Upvotes") return b.upvotes - a.upvotes;
-    if (sortBy === "Least Upvotes") return b.upvotes - a.upvotes;
+    if (sortBy === "Least Upvotes") return a.upvotes - b.upvotes;
     if (sortBy === "Most Comments") return b.comments - a.comments;
-    if (sortBy === "Least Comments") return b.comments - a.comments;
+    if (sortBy === "Least Comments") return a.comments - b.comments;
+    return 0;
   });
 
-  if (sortBy.length === 0) {
+  if (filtered.length === 0) {
     return (
       <div className="bg-white rounded-xl p-12 text-center">
         <p className="text-gray-500 text-lg">No suggestions found. Add One!</p>
@@ -27,10 +28,10 @@ const FeedbackList = ({
   }
   return (
     <div className="space-y-4">
-      {sorted.map((sorted) => (
+      {sorted.map((item) => (
         <FeedbackItems
-          key={sorted.id}
-          suggestions={sorted}
+          key={item.id}
+          suggestions={item}
           onUpvotes={onUpvotes}
           sortBy={sortBy}
           onView={onView}
