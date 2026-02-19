@@ -1,16 +1,23 @@
 # React + Vite
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+# Product Feedback App
 
-Currently, two official plugins are available:
+Users can
+- View the optimal layout for the app depending on their device's screen size
+- See hover states for all interactive elements on the page
+- Create, read, update, and delete product feedback requests
+- Receive form validations when trying to create/edit feedback requests
+- Sort suggestions by most/least upvotes and most/least comments
+- Filter suggestions by category
+- Add comments and replies to a product feedback request
+- Upvote product feedback requests
+- Bonus: Keep track of any changes, even
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+### Screenshots
+<img width="2560" height="2200" alt="product-feedback-phi-five vercel app_(Nest Hub Max)" src="https://github.com/user-attachments/assets/83736622-d1f7-4f05-9565-c53737f418be" />
 
-## React Compiler
+<img width="2560" height="1600" alt="product-feedback-phi-five vercel app_(Nest Hub Max) (1)" src="https://github.com/user-attachments/assets/05473a55-6ef9-47b8-aac5-32fd80e8440b" />
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+<img width="2560" height="1810" alt="product-feedback-phi-five vercel app_(Nest Hub Max) (2)" src="https://github.com/user-attachments/assets/ba4364d9-9435-42e8-923e-0673e62eece3" />
 
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+<img width="2560" height="2064" alt="product-feedback-phi-five vercel app_(Nest Hub Max) (3)" src="https://github.com/user-attachments/assets/bd924d86-367d-4fb0-9aec-dd4778dbdbe5" />
